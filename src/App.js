@@ -1,13 +1,13 @@
 import React from 'react';
 import Year from './components/Year';
+import moment from 'moment';
 
 
 
 function App() {
-  var moment = require('moment');
-var test = moment().format('dddd');
+
   return (
-    <div ></div>
+    <Year yearNumber={moment().year()}></Year>
   );
 }
 
