@@ -12,7 +12,7 @@ const Year = (props) => {
         <div>
             <div>{props.yearNumber}</div>
             <Mounth year={props.yearNumber} mounth={{ index: 0 }}></Mounth>
-            {/* <Mounth year={props.yearNumber} mounth={{ index: 1 }}></Mounth>
+            <Mounth year={props.yearNumber} mounth={{ index: 1 }}></Mounth>
             <Mounth year={props.yearNumber} mounth={{ index: 2 }}></Mounth>
             <Mounth year={props.yearNumber} mounth={{ index: 3 }}></Mounth>
             <Mounth year={props.yearNumber} mounth={{ index: 4 }}></Mounth>
@@ -22,7 +22,7 @@ const Year = (props) => {
             <Mounth year={props.yearNumber} mounth={{ index: 8 }}></Mounth>
             <Mounth year={props.yearNumber} mounth={{ index: 9 }}></Mounth>
             <Mounth year={props.yearNumber} mounth={{ index: 10 }}></Mounth>
-            <Mounth year={props.yearNumber} mounth={{ index: 11 }}></Mounth> */}
+            <Mounth year={props.yearNumber} mounth={{ index: 11 }}></Mounth>
         </div>
     )
 }
