@@ -9,22 +9,22 @@ import TableMonth from './components/Table'
 
 
 function App() {
-  const _moment = moment();
-  let currentYear=_moment.year();
-  let currentMonth=_moment.month();
+  let _moment = moment();
+  let currentYear = _moment.year();
+  let currentMonth = _moment.month();
 
   return (
     <div>
       <div>
-      <MonthDropdown year={currentYear} month={currentMonth}></MonthDropdown>
-      <YearDropdown year={currentYear} ></YearDropdown>
-      <Month month={currentMonth} year={currentYear}></Month>
+        <MonthDropdown year={currentYear} month={currentMonth}></MonthDropdown>
+        <YearDropdown year={currentYear} ></YearDropdown>
+        <Month month={currentMonth} year={currentYear}></Month>
       </div>
-      <br/>
-      <br/>
-      <TableMonth></TableMonth>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <TableMonth moment={_moment}></TableMonth>
+      <br />
+      <br />
 
       <Year year={currentYear} month={currentMonth}></Year>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import Day from './Day';
 
-export default function Month({month, year }) {
+export default function Month({ month, year }) {
 
     let _moment = moment([year, month]).month(month);
     const _daysInMonth = _moment.daysInMonth();
@@ -16,7 +16,7 @@ export default function Month({month, year }) {
 
     return (
         <div>
-            <h2 >{month}-{_moment.format("MMMM")}</h2>
+            <h2 >{month + 1}-{_moment.format("MMMM")}</h2>
             <div >{_days}</div>
         </div>
     )
