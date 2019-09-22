@@ -1,8 +1,9 @@
 import React from 'react';
 
-function Day(props) {
+function Day({day}) {
+
     return (
-        <span>{props.dayObject.indexOfDay}</span>
+        <span>{day+'|'}</span>
     )
 }
 
