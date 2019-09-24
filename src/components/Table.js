@@ -51,7 +51,19 @@ export default class TableMonth extends React.Component {
 
 
 
+        let weekdaysShort = moment.weekdaysShort();
+        let Ths = [];
 
+        for (let i = firstDay; i < 7; i++) {
+            const Th = function ({ day }) {
+                return (
+                    <th>{day}</th>
+                )
+            }
+
+            let daysShor = moment.weekdaysShort(true, i)
+            Ths.push(<Th day={daysShor}></Th>);
+        }
 
 
 
@@ -66,24 +78,23 @@ export default class TableMonth extends React.Component {
 
         /*********** */
         let weekTr = []
-        for (let i = 0; i <= numWeeks; i++) {
-
+        for (let i = 1; i <= numWeeks; i++) {
             const TRR = ({ weekNum }) => {
 
-                const TD = ({day }) => {
+                const TD = ({ day }) => {
                     debugger;
-                    drawDate.add(1, 'd');
+                   
                     return (
                         <td>{day.format('DD')}</td>
                     )
-                    
+
                 }
 
                 let dayTd = []
                 for (let i = 0; i <= 6; i++) {
-                    
+                    drawDate.add(1, 'd');
                     dayTd.push(<TD day={drawDate}></TD>)
-                    
+
                 }
 
                 return (
@@ -94,9 +105,7 @@ export default class TableMonth extends React.Component {
                 )
             }
 
-
-
-            weekTr.push(<TRR weekNum={i} moment={_moment}></TRR>)
+            weekTr.push(<TRR weekNum={i} moment={_moment}></TRR>);
         }
 
 
@@ -107,18 +116,12 @@ export default class TableMonth extends React.Component {
 
         return (
             <div>
-                {/* <div>{daysss}</div> */}
+                {firstDayOfMonth.day()}
                 <table style={tableStyle}>
                     <thead>
                         <tr>
                             <td>week num</td>
-                            <td>sa</td>
-                            <td>su</td>
-                            <td>mo</td>
-                            <td>tu</td>
-                            <td>we</td>
-                            <td>th</td>
-                            <td>fr</td>
+                            {Ths}
                         </tr>
                     </thead>
                     <tbody>
