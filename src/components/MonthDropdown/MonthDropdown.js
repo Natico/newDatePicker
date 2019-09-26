@@ -3,15 +3,15 @@ import MonthDropdownOption from './MonthDropdownOption';
 import moment from 'moment';
 
 
-function MonthDropdown({ year, month }) {
-  
+function MonthDropdown({ year, month, handleChange }) {
+
   let options = [];
   for (var i = 0; i < 12; i++) {
     let _moment = moment([year, i]).month(i);
     options.push(<MonthDropdownOption key={i} value={i} title={_moment.format("MMMM")} ></MonthDropdownOption>)
   }
   return (
-    <select value={month}>
+    <select value={month} onChange={handleChange}>
       {options}
     </select>
   );

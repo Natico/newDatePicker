@@ -1,3 +1,6 @@
-.table-month{
-    width: 300px;
+.table-month {
+  width: 300px;
+}
+.otherMonth {
+  display: none;
 }

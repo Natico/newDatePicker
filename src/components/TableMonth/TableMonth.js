@@ -1,20 +1,23 @@
 import React from "react";
 import moment from "moment";
-import TableMonthThead from "./Thead";
-import TableMonthTbody from "./Tbody";
+import Header from "./Header";
+import Month from "./Month";
 import "./TableMonthStyle.css";
 
 export default class TableMonth extends React.Component {
 	constructor(props) {
 		super(props);
 		// Don't call this.setState() here!
-		this.state = { year: "2019", month: "11", day: "18" };
+		this.state = {
+			year: this.props.year,
+			month: this.props.month,
+			day: this.props.day
+		};
 	}
 
 	render() {
-		debugger;
-		const state = this.state;
-		const _moment = moment([state.year, state.month-1, state.day]);
+		let state = this.state;
+		let _moment = moment([this.props.year, this.props.month, this.props.day]);
 		let currentYear = _moment.year();
 		let currentMonth = _moment.month();
 		let currentDay = _moment.day();
@@ -30,24 +33,27 @@ export default class TableMonth extends React.Component {
 		let firstWeekNum = firstDayOfMonth.isoWeek();
 		let weekNumberOfLastDay = lastDayOfMonth.isoWeek();
 
-		var leadDays = dayOfWeek - firstDay + (daysInWeek % daysInWeek);
+		let leadDays = dayOfWeek - firstDay + (daysInWeek % daysInWeek);
 
-		var weeksCount = Math.ceil((leadDays + daysInMonth) / daysInWeek); //find first day of month
-		var drawDate = firstDayOfMonth; //find first day of month
+		let weeksCount = Math.ceil((leadDays + daysInMonth) / daysInWeek); //find first day of month
+		let drawDate = firstDayOfMonth; //find first day of month
 		drawDate.add(-leadDays, "d"); //find first day of month table
 
 		let weekdaysShort = moment.weekdaysShort(true);
 
 		return (
 			<table className='table-month'>
-				<TableMonthThead
+				<Header
 					weekdaysShort={weekdaysShort}
-					weekNum={true}></TableMonthThead>
-				<TableMonthTbody
+					weekNum={true}></Header>
+				<Month
 					firstWeekNum={firstWeekNum}
 					weeksCount={weeksCount}
-					drawDate={drawDate}></TableMonthTbody>
+					drawDate={drawDate}
+					currentMonth={currentMonth}></Month>
+				<tfoot><h4>{_moment.format('YYYY/MM/DD')}</h4></tfoot>
 			</table>
+
 		);
 	}
 }
