@@ -8,6 +8,8 @@ function YearDropdown({ year, handleChange }) {
   for (var i = Number(year) - telorance; i < Number(year) + telorance; i++) {
     options.push(<YearDropdownOptions key={i} value={i} title={i}></YearDropdownOptions>)
   }
+
+  console.info('YearDropdown rendered');
   return (
     <select defaultValue={year} onChange={handleChange}>
       {options}

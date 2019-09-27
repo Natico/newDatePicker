@@ -40,7 +40,7 @@ export default class TableMonth extends React.Component {
 		drawDate.add(-leadDays, "d"); //find first day of month table
 
 		let weekdaysShort = moment.weekdaysShort(true);
-
+		console.info('TableMonth rendered');
 		return (
 			<table className='table-month'>
 				<Header

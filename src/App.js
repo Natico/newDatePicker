@@ -3,7 +3,8 @@ import moment from "moment";
 import TableMonth from './components/TableMonth/TableMonth';
 import MonthDropdown from './components/MonthDropdown/MonthDropdown';
 import YearDropdown from './components/YearDropdown/YearDropdown';
-import AppContext from './context/AppContext'
+import AppContext from './context/AppContext';
+import NextMonth from './components/ControlButtons/NextMonth';
 
 
 
@@ -30,6 +31,14 @@ class App extends React.Component {
     })
   }
 
+  nextMonthEvent() {
+    debugger;
+    let currentMonth = Number(this.state.month);
+    this.setState({
+      month: currentMonth + 1
+    })
+  }
+
   render() {
     let today = moment();
     // let defaultDate = null;
@@ -46,6 +55,7 @@ class App extends React.Component {
 
     return (
       <AppContext.Provider value={this.state}>
+        <NextMonth onClickAction={this.nextMonthEvent.bind(this)}></NextMonth>
         <YearDropdown handleChange={this.changeYear.bind(this)} year={this.state.year}></YearDropdown>
         <MonthDropdown handleChange={this.changeMonth.bind(this)} year={this.state.year} month={this.state.month}></MonthDropdown>
         <h4>{today.format('YYYY/MM/DD')}</h4>

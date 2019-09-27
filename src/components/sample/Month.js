@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import Day from './Day';
+import Day from '../Day';
 
 export default function Month({ month, year }) {
 
@@ -14,6 +14,7 @@ export default function Month({ month, year }) {
         _days.push(<Day key={i} day={i} month={month} year={year} week={_weekNumber} _DayOfWeek={_DayOfWeek}></Day>)
     }
 
+    console.info('Month rendered');
     return (
         <div>
             <h2 >{month + 1}-{_moment.format("MMMM")}</h2>

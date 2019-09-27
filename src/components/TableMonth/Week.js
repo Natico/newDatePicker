@@ -16,7 +16,7 @@ const Week = function ({ weekNum, drawDate }) {
 		let weekEnd = dayClone.get('day') === 6;
 		dayTd.push(<td key={i}><Day otherMonth={otherMonth} day={dayClone} weekEnd={weekEnd}></Day></td>);
 	}
-
+	console.info('Week rendered');
 	return (
 		<tr>
 			{weekNumTd}

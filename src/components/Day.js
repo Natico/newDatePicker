@@ -1,13 +1,14 @@
 import React from 'react';
+import { classNames } from '../util'
 
 function Day({ day, otherMonth, weekEnd }) {
 
     let dayClassList = [];
-    // otherMonth ? '' : dayClassList.push('otherMonth');
-    // weekEnd ? dayClassList.push('weekEnd') : '';
+    if (!otherMonth) dayClassList.push('otherMonth');
+    if (weekEnd) dayClassList.push('weekEnd');
 
-
-    let dayClassListStr = dayClassList.filter(item => !!item).join(' ');
+    console.log(dayClassList)
+    let dayClassListStr = classNames(dayClassList);
 
 
     return (

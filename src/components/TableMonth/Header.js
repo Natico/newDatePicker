@@ -8,7 +8,7 @@ const Header = function ({ weekdaysShort, weekNum }, context) {
 	for (let i = 0; i < 7; i++) {
 		Ths.push(<th key={i}>{weekdaysShort[i]}</th>);
 	}
-
+	console.info('Header rendered');
 	return (
 		<thead>
 			<tr>

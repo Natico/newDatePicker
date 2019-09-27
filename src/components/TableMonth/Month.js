@@ -11,6 +11,7 @@ const Month = function ({ firstWeekNum, weeksCount, drawDate, currentMonth }) {
 				drawDate={drawDate}></Week>
 		);
 	}
+	console.info('Month rendered');
 	return <tbody>{weekTr}</tbody>;
 };
 

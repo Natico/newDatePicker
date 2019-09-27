@@ -4,3 +4,7 @@
 .otherMonth {
   display: none;
 }
+
+.weekEnd {
+  color: red;
+}
