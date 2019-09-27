@@ -16,22 +16,22 @@ export default class TableMonth extends React.Component {
 	}
 
 	render() {
-		let state = this.state;
+		// let state = this.state;
 		let _moment = moment([this.props.year, this.props.month, this.props.day]);
 		let currentYear = _moment.year();
 		let currentMonth = _moment.month();
-		let currentDay = _moment.day();
-		let today = moment();
+		// let currentDay = _moment.day();
+		// let today = moment();
 		let daysInMonth = _moment.daysInMonth();
 		let firstDay = 0; // 0 baraie miladi 6 baraie jalali
 		let daysInWeek = 7;
 		let dayOfWeek = moment([currentYear, currentMonth, 1]).day();
 
 		let firstDayOfMonth = moment([currentYear, currentMonth, 1]);
-		let lastDayOfMonth = moment([currentYear, currentMonth, daysInMonth]);
+		// let lastDayOfMonth = moment([currentYear, currentMonth, daysInMonth]);
 
 		let firstWeekNum = firstDayOfMonth.isoWeek();
-		let weekNumberOfLastDay = lastDayOfMonth.isoWeek();
+		// let weekNumberOfLastDay = lastDayOfMonth.isoWeek();
 
 		let leadDays = dayOfWeek - firstDay + (daysInWeek % daysInWeek);
 
@@ -51,8 +51,9 @@ export default class TableMonth extends React.Component {
 					weeksCount={weeksCount}
 					drawDate={drawDate}
 					currentMonth={currentMonth}></Month>
-				<tfoot><h4>{_moment.format('YYYY/MM/DD')}</h4></tfoot>
+				<caption><h4>{_moment.format('YYYY/MM/DD')}</h4></caption>
 			</table>
+
 
 		);
 	}

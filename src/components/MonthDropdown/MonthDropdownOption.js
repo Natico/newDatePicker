@@ -1,9 +1,9 @@
 import React from 'react';
 
-function MonthDropdownOption({ key, value, title }) {
+function MonthDropdownOption({ value, title }) {
 
     return (
-        <option key={key} value={value}>
+        <option key value={value}>
             {title}
         </option>
 

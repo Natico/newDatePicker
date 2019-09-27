@@ -1,12 +1,11 @@
 import React from 'react';
 
-function YearDropdownOptions({ key, value, title ,selected}) {
+function YearDropdownOptions({ value, title }) {
 
     return (
-        <option key={key} value={value} selected={selected}>
+        <option key value={value}>
             {title}
         </option>
-
     );
 }
 

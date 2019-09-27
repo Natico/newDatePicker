@@ -32,7 +32,7 @@ class App extends React.Component {
 
   render() {
     let today = moment();
-    let defaultDate = null;
+    // let defaultDate = null;
 
     // if (defaultDate) {
 

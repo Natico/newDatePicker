@@ -12,8 +12,8 @@ const Week = function ({ weekNum, drawDate }) {
 	for (let i = 0; i <= 6; i++) {
 		let dayClone = cloneDeep(drawDate);
 		drawDate.add(1, "d");
-		let otherMonth = dayClone.get('month') == Number(AppData.month);
-		let weekEnd = dayClone.get('day') == 6;
+		let otherMonth = dayClone.get('month') === Number(AppData.month);
+		let weekEnd = dayClone.get('day') === 6;
 		dayTd.push(<td key={i}><Day otherMonth={otherMonth} day={dayClone} weekEnd={weekEnd}></Day></td>);
 	}
 
