@@ -11,7 +11,7 @@ function MonthDropdown({ year, month, handleChange }) {
     options.push(<MonthDropdownOption key={i} value={i} title={_moment.format("MMMM")} ></MonthDropdownOption>)
   }
   return (
-    <select value={month} onChange={handleChange}>
+    <select defaultValue={month} onChange={handleChange}>
       {options}
     </select>
   );
