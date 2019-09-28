@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useContext } from "react";
+import AppContext from "../../context/AppContext";
 
-export default class NextMonth extends React.Component {
-
-    render() {
-        return (
-            <a onClick={this.props.onClickAction}>NextMonth</a>
-        )
-    }
+function NextMonth({onClickAction}) {
+    let appContext = useContext(AppContext);    
+	return <a disabled={appContext.month === 11} onClick={onClickAction}>NextMonth</a>;
 }
+
+export default NextMonth;

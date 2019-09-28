@@ -1,71 +1,75 @@
-import React from 'react';
+import React from "react";
 import moment from "moment";
-import TableMonth from './components/TableMonth/TableMonth';
-import MonthDropdown from './components/MonthDropdown/MonthDropdown';
-import YearDropdown from './components/YearDropdown/YearDropdown';
-import AppContext from './context/AppContext';
-import NextMonth from './components/ControlButtons/NextMonth';
-
-
+import TableMonth from "./components/TableMonth/TableMonth";
+import MonthDropdown from "./components/MonthDropdown/MonthDropdown";
+import YearDropdown from "./components/YearDropdown/YearDropdown";
+import AppContext from "./context/AppContext";
+import NextMonth from "./components/ControlButtons/NextMonth";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    // Don't call this.setState() here!
-    this.state = {
-      year: '2019',
-      month: "08",
-      day: "12"
-    };
-  }
+	constructor(props) {
+		super(props);
+		// Don't call this.setState() here!
+		this.state = {
+			year: "2019",
+			month: "08",
+			day: "12"
+		};
+	}
 
-  changeMonth(e) {
-    this.setState({
-      month: e.target.value
-    })
-  }
+	changeMonth(e) {
+		this.setState({
+			month: e.target.value
+		});
+	}
 
-  changeYear(e) {
-    this.setState({
-      year: e.target.value
-    })
-  }
+	changeYear(e) {
+		this.setState({
+			year: e.target.value
+		});
+	}
 
-  nextMonthEvent() {
-    debugger;
-    let currentMonth = Number(this.state.month);
-    this.setState({
-      month: currentMonth + 1
-    })
-  }
+	nextMonthEvent() {
+		let currentMonth = Number(this.state.month);
+		if (currentMonth < 11 && currentMonth > 0) {
+			this.setState({
+				month: currentMonth + 1
+			});
+		}
+	}
 
-  render() {
-    let today = moment();
-    // let defaultDate = null;
+	render() {
+		let today = moment();
+		// let defaultDate = null;
 
-    // if (defaultDate) {
+		// if (defaultDate) {
 
-    // } else {
-    //   this.setState({
-    //     year: today.get('year'),
-    //     month: today.get('month'),
-    //     day: today.get('date')
-    //   })
-    // }
+		// } else {
+		//   this.setState({
+		//     year: today.get('year'),
+		//     month: today.get('month'),
+		//     day: today.get('date')
+		//   })
+		// }
 
-    return (
-      <AppContext.Provider value={this.state}>
-        <NextMonth onClickAction={this.nextMonthEvent.bind(this)}></NextMonth>
-        <YearDropdown handleChange={this.changeYear.bind(this)} year={this.state.year}></YearDropdown>
-        <MonthDropdown handleChange={this.changeMonth.bind(this)} year={this.state.year} month={this.state.month}></MonthDropdown>
-        <h4>{today.format('YYYY/MM/DD')}</h4>
-        <TableMonth year={this.state.year} month={this.state.month} day={this.state.day}></TableMonth>
-      </AppContext.Provider>
-
-    );
-  }
-
-
+		return (
+			<AppContext.Provider value={this.state}>
+				<NextMonth onClickAction={this.nextMonthEvent.bind(this)}></NextMonth>
+				<YearDropdown
+					handleChange={this.changeYear.bind(this)}
+					year={this.state.year}></YearDropdown>
+				<MonthDropdown
+					handleChange={this.changeMonth.bind(this)}
+					year={this.state.year}
+					month={this.state.month}></MonthDropdown>
+				<h4>{today.format("YYYY/MM/DD")}</h4>
+				<TableMonth
+					year={this.state.year}
+					month={this.state.month}
+					day={this.state.day}></TableMonth>
+			</AppContext.Provider>
+		);
+	}
 }
 
 export default App;
