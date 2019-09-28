@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import Header from "./Header";
 import Month from "./Month";
-import "./TableMonthStyle.css";
+// import "./TableMonthStyle.css";
 
 export default class TableMonth extends React.Component {
 	constructor(props) {
@@ -51,7 +51,7 @@ export default class TableMonth extends React.Component {
 					weeksCount={weeksCount}
 					drawDate={drawDate}
 					currentMonth={currentMonth}></Month>
-				<caption><h4>{_moment.format('YYYY/MM/DD')}</h4></caption>
+				{/* <caption><h4>{_moment.format('YYYY/MM/DD')}</h4></caption> */}
 			</table>
 
 

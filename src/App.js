@@ -5,35 +5,62 @@ import MonthDropdown from "./components/MonthDropdown/MonthDropdown";
 import YearDropdown from "./components/YearDropdown/YearDropdown";
 import AppContext from "./context/AppContext";
 import NextMonth from "./components/ControlButtons/NextMonth";
+import PrevMonth from "./components/ControlButtons/PrevMonth";
+import Input from "./components/Input";
+import './App.less'
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		// Don't call this.setState() here!
 		this.state = {
-			year: "2019",
-			month: "08",
-			day: "12"
+			viewDate: {
+				year: 2019,
+				month: 8,
+				day: 12
+			},
+			selectedDate: {
+				year: 2019,
+				month: 8,
+				day: 12
+			}
 		};
 	}
 
 	changeMonth(e) {
 		this.setState({
-			month: e.target.value
+			viewDate :{
+				month: e.target.value
+			}
 		});
 	}
 
 	changeYear(e) {
 		this.setState({
-			year: e.target.value
+			viewDate :{
+				year: e.target.value
+			}
 		});
 	}
 
 	nextMonthEvent() {
 		let currentMonth = Number(this.state.month);
-		if (currentMonth < 11 && currentMonth > 0) {
+		if (currentMonth < 11 && currentMonth >= 0) {
 			this.setState({
-				month: currentMonth + 1
+				viewDate :{
+					month: currentMonth + 1
+				}
+			});
+		}
+	}
+
+	prevMonthEvent() {
+		let currentMonth = Number(this.state.month);
+		if (currentMonth <= 11 && currentMonth > 0) {
+			this.setState({
+				viewDate :{
+					month: currentMonth - 1
+				}				
 			});
 		}
 	}
@@ -53,20 +80,30 @@ class App extends React.Component {
 		// }
 
 		return (
-			<AppContext.Provider value={this.state}>
-				<NextMonth onClickAction={this.nextMonthEvent.bind(this)}></NextMonth>
-				<YearDropdown
-					handleChange={this.changeYear.bind(this)}
-					year={this.state.year}></YearDropdown>
-				<MonthDropdown
-					handleChange={this.changeMonth.bind(this)}
-					year={this.state.year}
-					month={this.state.month}></MonthDropdown>
-				<h4>{today.format("YYYY/MM/DD")}</h4>
-				<TableMonth
-					year={this.state.year}
-					month={this.state.month}
-					day={this.state.day}></TableMonth>
+			<AppContext.Provider value={this.state.selectedDate}>
+				{/* <Input
+					year={this.state.selectedDate.year}
+					month={this.state.selectedDate.month}
+					day={this.state.selectedDate.day}></Input> */}
+				<div>
+					<NextMonth onClickAction={this.nextMonthEvent.bind(this)}></NextMonth>
+					<PrevMonth onClickAction={this.prevMonthEvent.bind(this)}></PrevMonth>
+				</div>
+				<div>
+					<YearDropdown
+						handleChange={this.changeYear.bind(this)}
+						year={this.state.viewDate.year}></YearDropdown>
+					<MonthDropdown
+						handleChange={this.changeMonth.bind(this)}
+						year={this.state.viewDate.year}
+						month={this.state.viewDate.month}></MonthDropdown>
+				</div>
+				<div>
+					<TableMonth
+						year={this.state.viewDate.year}
+						month={this.state.viewDate.month}
+						day={this.state.viewDate.day}></TableMonth>
+				</div>
 			</AppContext.Provider>
 		);
 	}
