@@ -5,14 +5,6 @@ import moment from 'moment';
 
 class MonthDropdown extends React.Component {
 
-  componentsDidUpdate(oldProps) {
-    // debugger;
-    // if (oldProps.month !== this.props.month) {
-    //   this.setState({ defaultValue: oldProps.month })
-    // }
-  }
-
-
   render() {
     const { year, month, handleChange } = this.props;
     let options = [];
@@ -22,8 +14,9 @@ class MonthDropdown extends React.Component {
       options.push(<MonthDropdownOption key={i} value={i} title={_moment.format("MMMM")} _selected={_selected}></MonthDropdownOption>)
     }
     console.info('MonthDropdown rendered');
+    debugger;
     return (
-      <select defaultValue={month} onChange={handleChange}>
+      <select value={Number(month)} onChange={handleChange}>
         {options}
       </select>
     );
