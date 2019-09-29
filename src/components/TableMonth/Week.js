@@ -3,7 +3,7 @@ import { cloneDeep } from "lodash";
 import Day from '../Day';
 import AppContext from '../../context/AppContext'
 
-const Week = function ({ weekNum, drawDate }) {
+const Week = function ({ weekNum, drawDate ,events}) {
 	const AppData = useContext(AppContext);
 	let dayTd = [];
 	let weekNumTd = weekNum ? (
@@ -14,7 +14,7 @@ const Week = function ({ weekNum, drawDate }) {
 		drawDate.add(1, "d");
 		let otherMonth = dayClone.get('month') === Number(AppData.month);
 		let weekEnd = dayClone.get('day') === 6;
-		dayTd.push(<td key={i}><Day otherMonth={otherMonth} day={dayClone} weekEnd={weekEnd}></Day></td>);
+		dayTd.push(<td key={i}><Day otherMonth={otherMonth} day={dayClone} weekEnd={weekEnd} events={events}></Day></td>);
 	}
 	console.info('Week rendered');
 	return (

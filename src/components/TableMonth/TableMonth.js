@@ -50,7 +50,8 @@ export default class TableMonth extends React.Component {
 					firstWeekNum={firstWeekNum}
 					weeksCount={weeksCount}
 					drawDate={drawDate}
-					currentMonth={currentMonth}></Month>
+					currentMonth={currentMonth}
+					events={this.props.events}></Month>
 				{/* <caption><h4>{_moment.format('YYYY/MM/DD')}</h4></caption> */}
 			</table>
 

@@ -3,7 +3,7 @@ import AppContext from "../../context/AppContext";
 
 function NextMonth({onClickAction}) {
     let appContext = useContext(AppContext);    
-	return <a className='NextMonth' disabled={appContext.month === 11} onClick={onClickAction}>NextMonth</a>;
+	return <button className='NextMonth' disabled={appContext.viewDate.month === 11} onClick={onClickAction}>NextMonth</button>;
 }
 
 export default NextMonth;

@@ -6,7 +6,7 @@ import YearDropdown from "./components/YearDropdown/YearDropdown";
 import AppContext from "./context/AppContext";
 import NextMonth from "./components/ControlButtons/NextMonth";
 import PrevMonth from "./components/ControlButtons/PrevMonth";
-import Input from "./components/Input";
+import ViewInput from "./components/ViewInput";
 import './App.less'
 
 class App extends React.Component {
@@ -20,49 +20,88 @@ class App extends React.Component {
 				day: 12
 			},
 			selectedDate: {
-				year: 2019,
-				month: 8,
-				day: 12
-			}
+				year: null,
+				month: null,
+				day: null
+			},
+			value:null
 		};
 	}
 
 	changeMonth(e) {
-		this.setState({
-			viewDate :{
-				month: e.target.value
+		let newValue =  e.target.value;
+		this.setState(prevState => ({			
+			viewDate: {
+				...prevState.viewDate,
+				month: newValue
 			}
-		});
+		}));
 	}
 
 	changeYear(e) {
-		this.setState({
-			viewDate :{
-				year: e.target.value
+		let newValue =  e.target.value;
+		this.setState((prevState )=>({
+			viewDate:{
+				...prevState.viewDate,
+				year : newValue
 			}
-		});
+		}))
 	}
 
 	nextMonthEvent() {
-		let currentMonth = Number(this.state.month);
+		let currentMonth = Number(this.state.viewDate.month);
 		if (currentMonth < 11 && currentMonth >= 0) {
-			this.setState({
-				viewDate :{
+			this.setState(prevState => ({
+				viewDate: {
+					...prevState.viewDate,
 					month: currentMonth + 1
 				}
-			});
+			}));
 		}
 	}
 
 	prevMonthEvent() {
-		let currentMonth = Number(this.state.month);
+		let currentMonth = Number(this.state.viewDate.month);
 		if (currentMonth <= 11 && currentMonth > 0) {
-			this.setState({
-				viewDate :{
+			this.setState(prevState => ({
+				viewDate: {
+					...prevState.viewDate,
 					month: currentMonth - 1
-				}				
+				}
+			}));
+		}
+	}
+
+	onDaySelect(selectedDay){
+		if (selectedDay) {
+			this.setState(prevState => ({
+				selectedDate: {
+					...prevState.viewDate,
+					year: selectedDay.get('year'),
+					month: selectedDay.get('month'),
+					day: selectedDay.get('date')
+				}
+			}));
+
+		}
+	}
+
+	updateAltField(dateObj){
+		debugger;
+		if (dateObj) {
+			this.setState({
+				value : dateObj
 			});
 		}
+	}
+
+	// altField: null, // Alternate field to update in synch with the datepicker 
+    // altFormat: null, // Date format for alternate field, defaults to dateFormat 
+
+	events={
+		onDaySelect : this.onDaySelect.bind(this),
+		updateAltField : this.updateAltField.bind(this)
+
 	}
 
 	render() {
@@ -80,11 +119,12 @@ class App extends React.Component {
 		// }
 
 		return (
-			<AppContext.Provider value={this.state.selectedDate}>
-				{/* <Input
+			<AppContext.Provider value={this.state}>
+				<ViewInput
 					year={this.state.selectedDate.year}
 					month={this.state.selectedDate.month}
-					day={this.state.selectedDate.day}></Input> */}
+					day={this.state.selectedDate.day}
+					events={this.events}></ViewInput>
 				<div>
 					<NextMonth onClickAction={this.nextMonthEvent.bind(this)}></NextMonth>
 					<PrevMonth onClickAction={this.prevMonthEvent.bind(this)}></PrevMonth>
@@ -102,7 +142,8 @@ class App extends React.Component {
 					<TableMonth
 						year={this.state.viewDate.year}
 						month={this.state.viewDate.month}
-						day={this.state.viewDate.day}></TableMonth>
+						day={this.state.viewDate.day}
+						events={this.events}></TableMonth>
 				</div>
 			</AppContext.Provider>
 		);
